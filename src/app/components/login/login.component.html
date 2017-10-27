@@ -7,17 +7,17 @@
 	<div class="logo">Login</div>
 	<!-- Main Form -->
 	<div class="login-form-1">
-		<form class="text-left" (submit)="onLogin(user.value, password.value)">
+		<form (ngSubmit)="onSubmit(fm)" #fm="ngForm">
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
 					<div class="form-group">
 						<label for="lg_username" class="sr-only">Username</label>
-						<input type="text" #user class="form-control" placeholder="username">
+						<input type="text" class="form-control"  [(ngModel)]="cred.email" name="email"  placeholder="email">
 					</div>
 					<div class="form-group">
 						<label for="lg_password" class="sr-only">Password</label>
-						<input type="password" #password class="form-control" placeholder="password">
+						<input type="password" class="form-control" [(ngModel)]="cred.password" name="password" placeholder="password">
 					</div>
 					<!--<div class="form-group login-group-checkbox">
 						<input type="checkbox" id="lg_remember" name="lg_remember">
