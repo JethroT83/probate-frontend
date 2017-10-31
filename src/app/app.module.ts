@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 
-//Inmports
+//Imports
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 import { Routing }        from './app.routing';
+import { Ng4FilesModule } from 'angular4-files-upload';
 
 //Components
 import { AppComponent } from './app.component';
@@ -20,7 +21,8 @@ import { AuthenticationService } from './_services/index';
     BrowserModule,
     HttpModule,
     FormsModule,
-    Routing
+    Routing,
+    Ng4FilesModule
   ],
   declarations: [
     AppComponent,

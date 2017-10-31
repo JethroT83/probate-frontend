@@ -1,0 +1,14 @@
+
+.uploadBox{
+	max-width:inherit;
+	height:55vh;
+	background:white;
+	outline: #00FF00 dotted thick;
+
+	line-height:55vh;
+	text-align: center;
+	vertical-align: middle;
+
+	font-size:2em;
+	color:grey;
+}

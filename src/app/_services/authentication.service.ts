@@ -17,7 +17,7 @@ export class AuthenticationService {
 
       	return this.http.post('http://localhost:8000/api/v1/auth/login', cred, {headers: this.headers})
             .map((response: Response) => {
-console.log(response.json());
+
                 // login successful if there's a jwt token in the response
                 let user = response.json();
                 if (user && user.token) {

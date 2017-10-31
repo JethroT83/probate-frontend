@@ -3,10 +3,22 @@
 
 <!-- Where all the magic happens -->
 <!-- LOGIN FORM -->
-<div class="text-center" style="padding:50px 0">
+<div class="text-center">
 	<div class="logo">Home</div>
 	<div class="topnav">
-		<a href="Upload"></a>
-		<a href="MyFiles"></a>
+		<a href="Upload">Upload</a>
+		<a href="MyFiles">MyFiles</a>
+	</div>
+	<div class="contianer">
+		<div class="row">
+			<div class="col-xs-12 offset-xs-3">
+				<ng4-files-drop (filesSelect)="filesSelect($event)">
+				  <div class="uploadBox">
+				  	Drag and Drop File Here
+				    {{selectedFiles}}
+				  </div>
+				</ng4-files-drop>
+			</div>
+		</div>
 	</div>
 </div>
