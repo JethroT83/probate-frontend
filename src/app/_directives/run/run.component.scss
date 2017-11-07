@@ -1,0 +1,17 @@
+table.dataTable {
+  clear: both;
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
+  max-width: none !important;
+  border-collapse: separate !important;
+  width:75%;
+  td, th {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+  }
+  &.nowrap {
+    th, td {
+      white-space: nowrap;
+    }
+  }
+}

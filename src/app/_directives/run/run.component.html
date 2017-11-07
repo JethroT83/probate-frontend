@@ -1,0 +1,26 @@
+<div class="row">
+	<table class="table table-striped table-bordered" cellspacing="0">
+		<thead>
+			<th><h3>File</h3></th>
+			<th><h3>Run</h3></th>
+			<th><h3>CSV</h3></th>
+		</thead>
+	  	<tbody>
+	  		<tr *ngFor="let file of files">
+				<td>{{file.frontend_name}}</td>
+				<td *ngIf="file.ran == 0">
+					<button (click)="runFile(file.local_name)">Run</button>
+				</td>
+				<td *ngIf="file.ran == 1">
+					<button (click)="runFile(file.local_name)">Re-Run</button>
+				</td>
+				<td *ngIf="file.ran == 0">
+					<span>Must Run File</span>
+				</td>
+				<td *ngIf="file.ran == 1">
+					<button (click)="getCsv()">Get CSV</button>
+				</td>
+	  		</tr>
+	  	</tbody>
+	</table>
+</div>

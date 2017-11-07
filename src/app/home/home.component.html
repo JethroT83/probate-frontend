@@ -1,24 +1,46 @@
 <!-- All the files that are required -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<header>
+	<div class="logo">Probatinator</div>
+</header>
+<div class="contianer">
+	<div class="row">
+		<div class="col-xs-2">
+			<nav class="sidebar">
+				<ul>
+					<li>
+						<div class="btn btn-primary" 
+						(click)="getUpload($event)">Upload</div>
+					</li>
+					<li>
+						<div class="btn btn-primary" 
+						(click)="getMyFiles($event)">MyFiles</div>
+					</li>
+				</ul>
+			</nav>
+		</div>
 
-<!-- Where all the magic happens -->
-<!-- LOGIN FORM -->
-<div class="text-center">
-	<div class="logo">Home</div>
-	<div class="topnav">
-		<a href="Upload">Upload</a>
-		<a href="MyFiles">MyFiles</a>
-	</div>
-	<div class="contianer">
-		<div class="row">
-			<div class="col-xs-12 offset-xs-3">
-				<ng4-files-drop (filesSelect)="filesSelect($event)">
-				  <div class="uploadBox">
-				  	Drag and Drop File Here
-				    {{selectedFiles}}
-				  </div>
-				</ng4-files-drop>
-			</div>
+	<!-- Where all the magic happens -->
+	<!-- LOGIN FORM -->
+
+		<!--<div id="content">-->
+		<div *ngIf="uploadPos===true" class="col-xs-8 offset-xs-1">
+			<app-upload></app-upload>
+		</div>
+		<div *ngIf="myFilesPos===true" class="col-xs-8 offset-xs-1">
+			<app-run [files]="files"></app-run>
 		</div>
 	</div>
+<!--<div class="col-xs-9 pull-right" id="appUpload">
+				<app-upload></app-upload>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-9 pull-right" id="appRun">
+				<app-run [files]="files"></app-run>
+			</div>
+		</div>
+	<!--</div>-->
 </div>
+<footer>
+</footer>

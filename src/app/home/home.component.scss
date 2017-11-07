@@ -1,0 +1,43 @@
+header, footer {
+    padding-bottom: 1em;
+    min-height:5em;
+    color: white;
+	background:repeating-linear-gradient(45deg, #A4DE4B, #E0F4D8);
+    clear: left;
+    text-align: center;
+    .logo{	
+    	font-size:4em;
+  		font-weight:bold;
+    	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black
+  	}
+}
+
+.contianer{
+    background-image: url("../../assets/home_background.png");
+    background-size: cover;
+}
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+
+.sidebar {
+    background:repeating-linear-gradient(90deg,#49B7C6, #9BE3D5);
+    min-height: 100vh;
+    border-left: 1px solid;
+    border-color:#000000;
+    ul{
+	    list-style-type: none;
+	    padding: 0;
+
+	    li{
+            div{
+                text-align: center;
+                width:100%;
+            }
+
+	    }
+    }
+}

@@ -14,7 +14,12 @@ import { HomeComponent } from './home/home.component';
 
 //Providers
 import { AuthGuard } from './_guards/index';
-import { AuthenticationService } from './_services/index';
+import { AuthenticationService, ToolBoxService} from './_services/index';
+
+//Directives
+import { UploadComponent } from './_directives/upload/upload.component';
+import { RunComponent } from './_directives/run/run.component';
+
 
 @NgModule({
   imports: [
@@ -27,10 +32,13 @@ import { AuthenticationService } from './_services/index';
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    UploadComponent,
+    RunComponent
   ],
   providers: [AuthGuard,
-              AuthenticationService],
+              AuthenticationService,
+              ToolBoxService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

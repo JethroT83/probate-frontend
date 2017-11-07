@@ -1,0 +1,18 @@
+/*=== 1. General Structure ===*/
+
+#glob html{
+  background: #efefef !important;
+  padding: 10px;
+  font-family: 'Varela Round';
+}
+
+/*=== 2. Anchor Link ===*/
+
+a {
+  color: #aaaaaa;
+  transition: all ease-in-out 200ms;
+  &:hover {
+    color: #333333;
+    text-decoration: none;
+  }
+}
