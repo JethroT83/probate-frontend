@@ -1,7 +1,11 @@
 <!-- All the files that are required -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <header>
-	<div class="logo">Probatinator</div>
+	<div class="col-xs-12">
+		<div class="logo">
+			<h1>Probatinator</h1>
+		</div>
+	</div>
 </header>
 <div class="contianer">
 	<div class="row">
@@ -14,7 +18,11 @@
 					</li>
 					<li>
 						<div class="btn btn-primary" 
-						(click)="getMyFiles($event)">MyFiles</div>
+						(click)="getMyFiles($event)">My Files</div>
+					</li>
+					<li>
+						<div class="btn btn-primary" 
+						(click)="logout($event)">Log Out</div>
 					</li>
 				</ul>
 			</nav>
@@ -25,10 +33,14 @@
 
 		<!--<div id="content">-->
 		<div *ngIf="uploadPos===true" class="col-xs-8 offset-xs-1">
-			<app-upload></app-upload>
+			<div class="module">
+				<app-upload></app-upload>
+			</div>
 		</div>
 		<div *ngIf="myFilesPos===true" class="col-xs-8 offset-xs-1">
-			<app-run [files]="files"></app-run>
+			<div class="module">
+				<app-run [files]="files"></app-run>
+			</div>
 		</div>
 	</div>
 <!--<div class="col-xs-9 pull-right" id="appUpload">

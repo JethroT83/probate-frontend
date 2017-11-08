@@ -53,7 +53,7 @@
   "defaults": {
     "styleExt": "scss",
     "component": {
-      "styles":"./assets/styles/*.scss"
+      "styles":"./src/styles.scss"
     }
   }
 }

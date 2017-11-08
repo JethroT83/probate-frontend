@@ -1,9 +1,34 @@
+
+@font-face {
+    font-family: 'didont';
+    src: url(/assets/fonts/didot_font.otf);
+}
+
+
+@font-face {
+    font-family: 'northwest_b';
+    src: url(/assets/fonts/northwest_b.otf);
+}
+
+
+@font-face {
+    font-family: 'blackthrons_black';
+    src: url(/assets/fonts/blackthorns_black.ttf);
+}
+
+
+@font-face {
+    font-family: 'blackthrons_regular';
+    src: url(/assets/fonts/blackthorns_regular.ttf);
+}
+
+
 /*=== 1. General Structure ===*/
 
-#glob html{
+html{
   background: #efefef !important;
   padding: 10px;
-  font-family: 'Varela Round';
+  font-family: 'blackthrons_regular';
 }
 
 /*=== 2. Anchor Link ===*/

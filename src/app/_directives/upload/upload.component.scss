@@ -1,13 +1,65 @@
+.titleWrapper{
+  background:black;
+  opacity:.5;
+
+  width:90vw;
+  height:20vh;
+
+  font-family: 'blackthrons_regular';
+  font-size:3em;
+  color:white;
+  text-align:center;
+
+  vertical-align:center;
+  line-height:20vh;
+  text-shadow: -1px 0 #2f75d8, 0 1px #2f75d8, 1px 0 #2f75d8, 0 -1px #2f75d8;
+
+  border: 1px solid;
+  border-color:white;
+  border-radius:25px;
+}
+
+
+
+.uploadWrapper{
+	padding-top:8vh;
+	padding-left:6vh;
+    border: 1px solid;
+    border-color:white;
+    border-radius: 25px;
+    width:90vw;
+    height:80vh;
+
+
+	&:before{
+
+		background-image: url('../../../assets/home_background.png');
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		content: " ";
+		background: inherit; 
+		width:inherit;
+		height:inherit;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0; 
+		bottom: 0;
+		box-shadow: inset 0 0 0 3000px rgba(28,122,255,0.3);
+		filter: blur(10px);
+	}
+}
+
+
 .uploadBox {
-	//position:absolute;
-	//left: 140px;
-	max-width: inherit;
-	height: 55vh;
-	background: white;
-	outline: #00FF00 dotted thick;
-	line-height: 55vh;
+	height: 65vh;
+	width:65vw;
+	outline: white dotted thick;
+	padding-top:28vh;
 	text-align: center;
-	vertical-align: middle;
+	font-family: 'blackthrons_regular';
 	font-size: 2em;
-	color: grey;
+	color: white;
+	text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000
 }

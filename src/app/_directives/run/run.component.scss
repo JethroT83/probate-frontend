@@ -1,17 +1,81 @@
-table.dataTable {
-  clear: both;
-  margin-top: 1em !important;
-  margin-bottom: 1em !important;
-  max-width: none !important;
-  border-collapse: separate !important;
-  width:75%;
-  td, th {
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
+.titleWrapper{
+  background:black;
+  opacity:.5;
+
+  width:90vw;
+  height:20vh;
+
+  font-family: 'blackthrons_regular';
+  font-size:3em;
+  color:white;
+  text-align:center;
+
+  vertical-align:center;
+  line-height:20vh;
+  text-shadow: -1px 0 #2f75d8, 0 1px #2f75d8, 1px 0 #2f75d8, 0 -1px #2f75d8;
+
+  border: 1px solid;
+  border-color:white;
+  border-radius:25px;
+}
+
+
+
+.runWrapper{
+  padding-left:4vw;
+  padding-top:6vh;
+  border: 1px solid;
+  border-color:white;
+  border-radius:25px;
+  width:90vw;
+  height:80vh;
+
+
+  &:before{
+
+    background-image: url('../../../assets/home_background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    content: " ";
+    background: inherit; 
+    width:inherit;
+    height:inherit;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0; 
+    bottom: 0;
+    box-shadow: inset 0 0 0 3000px rgba(28,122,255,0.3);
+    filter: blur(10px);
   }
-  &.nowrap {
-    th, td {
-      white-space: nowrap;
+}
+
+
+
+
+table{
+
+  font-family: 'blackthrons_regular';
+
+  background:#7fb4ff;
+  opacity:.80;
+
+  .dataTable {
+    clear: both;
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+    max-width: none !important;
+    border-collapse: separate !important;
+    width:75%;
+    td, th {
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+    }
+    &.nowrap {
+      th, td {
+        white-space: nowrap;
+      }
     }
   }
 }

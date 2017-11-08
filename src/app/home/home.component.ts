@@ -2,18 +2,19 @@ import { Component,OnInit,ViewChildren } from '@angular/core';
 import { Http, Headers,Response } from '@angular/http';
 import { Ng4FilesModule,Ng4FilesStatus,Ng4FilesSelected } from 'angular4-files-upload';
 import * as Promise from 'bluebird';
+import { Router, ActivatedRoute } from '@angular/router';
 //import {TweenMax, TimelineLite} from '@types/gsap';
 //import TweenMax from '@types/gsap/src/uncompressed/TweenMax';
 import TimelineLite from 'gsap/TimelineLite';
 import TimelineMax from 'gsap/TimelineMax';
 //import TweenLite from 'gasp/TweenLite';
 //import TweenMax from '@types/gsap/Tween';
-
+import { AuthenticationService } from '../_services/index';
 
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.scss']
+	styleUrls: ['../app.component.scss','./home.component.scss']
 })
 
 export class HomeComponent implements OnInit {
@@ -31,7 +32,9 @@ export class HomeComponent implements OnInit {
 	private myFilesPos = false;
 
 
-	constructor(private http:Http) {}
+	constructor(private http:Http,
+				private router: Router,
+				private authenticationService: AuthenticationService) {}
 
 	ngOnInit() {
 		this.getFiles();
@@ -50,7 +53,7 @@ export class HomeComponent implements OnInit {
 				}
 
 				this.tl1 = new TimelineLite();
-				this.tl1.to('#appUpload', .5, {right:140});
+				this.tl1.to('#appUpload', 1, {right:140});
 				this.uploadPos = true;
 				break;
 
@@ -74,7 +77,7 @@ export class HomeComponent implements OnInit {
 				}
 
 				this.tl2 = new TimelineLite();
-				this.tl2.to('#appUpload', .5, {right:140});
+				this.tl2.to('#appUpload', 1, {right:140});
 				this.myFilesPos = true;
 				break;
 
@@ -97,5 +100,11 @@ export class HomeComponent implements OnInit {
 			        console.log("Ummm yea... I am gonna have to go ahead and disagree with you there.")
 			    }
 			);
+	}
+
+
+	public logout(event){
+		this.authenticationService.logout();
+		this.router.navigate(['/login']);
 	}
 }

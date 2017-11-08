@@ -10,7 +10,7 @@ import { AuthenticationService } from '../_services/index';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['../app.component.scss','./login.component.scss']
 })
 
 
