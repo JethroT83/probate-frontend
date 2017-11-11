@@ -7,7 +7,14 @@
 		</div>
 	</div>
 </header>
-<div class="contianer">
+	<div class="contianer">
+		<div *ngIf="pc===true; then pcBlock; else mobileBlock"></div>
+	</div>
+<footer>
+</footer>
+
+<!-- Template for PC -->
+<ng-template #pcBlock>
 	<div class="row">
 		<div class="col-xs-2">
 			<nav class="sidebar">
@@ -27,32 +34,59 @@
 				</ul>
 			</nav>
 		</div>
-
-	<!-- Where all the magic happens -->
-	<!-- LOGIN FORM -->
-
-		<!--<div id="content">-->
-		<div *ngIf="uploadPos===true" class="col-xs-8 offset-xs-1">
-			<div class="module">
-				<app-upload></app-upload>
+		<div *ngIf="uploadpos===true">
+		 	<div class="col-xs-8 offset-xs-1">
+				<div class="module">
+					<app-upload></app-upload>
+				</div>
 			</div>
 		</div>
-		<div *ngIf="myFilesPos===true" class="col-xs-8 offset-xs-1">
-			<div class="module">
-				<app-run [files]="files"></app-run>
+		<div *ngIf="myfilespos===true">
+			<div class="col-xs-8 offset-xs-1">
+				<div class="module">
+					<app-run></app-run>
+				</div>
 			</div>
 		</div>
 	</div>
-<!--<div class="col-xs-9 pull-right" id="appUpload">
-				<app-upload></app-upload>
+</ng-template>
+
+<!-- Template for Mobile -->
+<ng-template #mobileBlock>
+	<div class="row">
+		<div class="col-xs-12">
+			<nav class="sidebar">
+				<ul>
+					<li>
+						<div class="btn btn-primary" 
+						(click)="getUpload($event)">Upload</div>
+					</li>
+					<li>
+						<div class="btn btn-primary" 
+						(click)="getMyFiles($event)">My Files</div>
+					</li>
+					<li>
+						<div class="btn btn-primary" 
+						(click)="logout($event)">Log Out</div>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+		<div *ngIf="uploadpos===true">
+			<div class="col-xs-12">
+				<div class="module">
+					<app-upload></app-upload>
+				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-9 pull-right" id="appRun">
-				<app-run [files]="files"></app-run>
+		<div *ngIf="myfilespos===true">
+			<div class="col-xs-12">
+				<div class="module">
+					<app-run></app-run>
+				</div>
 			</div>
 		</div>
-	<!--</div>-->
-</div>
-<footer>
-</footer>
+	</div>
+</ng-template>

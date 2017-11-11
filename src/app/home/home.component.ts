@@ -1,15 +1,20 @@
-import { Component,OnInit,ViewChildren } from '@angular/core';
+//Angular
+import { Component,OnInit} from '@angular/core';
 import { Http, Headers,Response } from '@angular/http';
+import { Router, ActivatedRoute } from '@angular/router';
+
+//Services
+import { AuthenticationService } from '../_services/index';
+//import { Template } from '../_models/index';
+
+//Libraries
 import { Ng4FilesModule,Ng4FilesStatus,Ng4FilesSelected } from 'angular4-files-upload';
 import * as Promise from 'bluebird';
-import { Router, ActivatedRoute } from '@angular/router';
-//import {TweenMax, TimelineLite} from '@types/gsap';
-//import TweenMax from '@types/gsap/src/uncompressed/TweenMax';
 import TimelineLite from 'gsap/TimelineLite';
 import TimelineMax from 'gsap/TimelineMax';
-//import TweenLite from 'gasp/TweenLite';
-//import TweenMax from '@types/gsap/Tween';
-import { AuthenticationService } from '../_services/index';
+declare var jquery:any;
+declare var $ :any;
+
 
 @Component({
 	selector: 'app-home',
@@ -19,71 +24,98 @@ import { AuthenticationService } from '../_services/index';
 
 export class HomeComponent implements OnInit {
 
-	public selectedFiles;
-	public files = [];
-	private message = [];
-	private headers  = new Headers({"Content-Type":"multipart/form-data",
+	protected selectedFiles;
+	protected files = [];
+	protected message = [];
+	protected headers  = new Headers({"Content-Type":"multipart/form-data",
 									"cache-control": "no-cache"});
-
+	protected width;
+	protected pc;
+	protected largeBreak = 767;
 	private tl1;
 	private tl2;
 	private tm;
-	private uploadPos = false;
-	private myFilesPos = false;
+	private uploadpos = false;
+	private myfilespos = false;
 
 
-	constructor(private http:Http,
+	constructor(protected http:Http,
 				private router: Router,
-				private authenticationService: AuthenticationService) {}
+				private authenticationService: AuthenticationService) {
+
+		// Set width
+		this.width = document.body.offsetWidth;
+		this.templateChange();
+	}
 
 	ngOnInit() {
 		this.getFiles();
+		this.onResize();
 	}
 
-	public getUpload(event){
+	protected onResize(){
 
-		switch(this.uploadPos){
+		$( window ).resize((event)=>{
+			this.width = $(window).width();
+			this.templateChange();
+		});
+	}
 
-			case false:
-				console.log(this.tl2);
-				//Close the other view before opening the other one
-				if(	typeof this.tl2 != 'undefined'){
-					this.tl2.reverse();
-					this.myFilesPos = false;
-				}
-
-				this.tl1 = new TimelineLite();
-				this.tl1.to('#appUpload', 1, {right:140});
-				this.uploadPos = true;
-				break;
-
-			default:
-				this.tl1.reverse();
-				this.uploadPos = false;
-				break;
-
+	private templateChange(){
+		if(this.width<=this.largeBreak){
+			this.pc = false;
+		}else{
+			this.pc = true;
 		}
 	}
 
 
+	public getUpload(event){
+
+		switch(this.uploadpos){
+
+			case false:
+				//console.log(this.tl2);
+				//Close the other view before opening the other one
+				if(	typeof this.tl2 != 'undefined'){
+					this.tl2.reverse();
+					this.myfilespos = false;
+				}
+
+				this.tl1 = new TimelineLite();
+				this.tl1.to('#appUpload', 1, {right:140});
+				this.uploadpos = true;
+				break;
+
+			default:
+				this.tl1.reverse();
+				this.uploadpos = false;
+				break;
+
+		}
+
+		this.onResize();
+	}
+
+
 	public getMyFiles(event){
-		switch(this.myFilesPos){
+		switch(this.myfilespos){
 
 			case false:
 				//Close the other view before opening the other one
 				if(typeof this.tl1 != 'undefined'){
 					this.tl1.reverse();
-					this.uploadPos = false;
+					this.uploadpos = false;
 				}
 
 				this.tl2 = new TimelineLite();
-				this.tl2.to('#appUpload', 1, {right:140});
-				this.myFilesPos = true;
+				this.tl2.to('#appMyFiles', 1, {right:140});
+				this.myfilespos = true;
 				break;
 
 			default:
 				this.tl2.reverse();
-				this.myFilesPos = false;
+				this.myfilespos = false;
 				break;
 
 		}

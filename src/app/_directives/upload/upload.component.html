@@ -1,10 +1,29 @@
 <div class="titleWrapper">
 Upload Files
 </div>
-<div class="col-xs-12 offset-xs-3  uploadWrapper">
-	<ng4-files-drop (filesSelect)="filesSelect($event)">
-		<div class="uploadBox">
-			Drag and Drop File Here
-		</div>
-	</ng4-files-drop>
-</div>
+<div *ngIf="pc===true; then pcBlock; else mobileBlock"></div>
+
+
+<ng-template #pcBlock>
+	<div class="col-xs-9 offset-xs-3  uploadWrapper">
+		<ng4-files-drop (filesSelect)="filesDrop($event)">
+			<div class="uploadBox">
+				Drag and Drop File Here
+			</div>
+		</ng4-files-drop>
+	</div>
+</ng-template>
+
+
+<ng-template #mobileBlock>
+	<div class="col-xs-12 uploadWrapper">
+		<ng4-files-click class="btn btn-primary" (filesSelect)="filesSelect($event)">
+			<div class="uploadForm">
+				Select File
+			</div>
+		</ng4-files-click>
+	</div>
+</ng-template>
+
+
+

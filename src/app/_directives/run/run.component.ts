@@ -1,7 +1,8 @@
 
 import { Component, OnInit, Input} from '@angular/core';
 import { Http, Headers,Response } from '@angular/http';
-import { ToolBoxService } from '../../_services/index';
+import {HomeComponent} from '../../home/home.component';
+
 
 @Component({
 	selector: 'app-run',
@@ -11,34 +12,13 @@ import { ToolBoxService } from '../../_services/index';
 })
 
 
-export class RunComponent implements OnInit {
+export class RunComponent extends HomeComponent implements OnInit {
 
-	@Input() public files = [];
-
-	constructor(private http:Http,
-				private tool:ToolBoxService) {
-
-		console.log(this.files);
-	}
 
 	ngOnInit() {
-		//console.log("this should be working");
-		//this.getFiles();
+		super.ngOnInit();
 	}
 
-	/*public getFiles(){
-		//this.tool.getFiles()
-		this.http.get('http://localhost:8000/api/v1/files')
-		.subscribe(
-	        data=>{
-	          console.log(data.json());
-	          this.files = data.json();
-	        }, 
-	        err => {
-	              console.log("Ummm yea... I am gonna have to go ahead and disagree with you there.")
-	          }
-	      );
-	}*/
 
 	public runFile(fileID){
 		this.http.get('http://localhost:8000/api/v1/run/'+fileID)
