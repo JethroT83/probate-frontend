@@ -1,37 +1,56 @@
-
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import { JwtHelper } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthenticationService {
-	
-	private headers  = new Headers({"Content-Type":"application/json"});
+  
+  private headers  = new Headers({"Content-Type":"application/json"});
 
-    constructor(private http: Http) { }
+    constructor(private http: Http,
+                public jwtHelper: JwtHelper) { }
 
     login(email:string, password:string) {
 
-    	let cred = JSON.stringify({email:email,password:password});
+      let cred = JSON.stringify({email:email,password:password});
 
-      	return this.http.post('http://localhost:8000/api/v1/auth/login', cred, {headers: this.headers})
+        return this.http.post('http://localhost:8000/api/v1/auth/login', cred, {headers: this.headers})
             .map((response: Response) => {
 
                 // login successful if there's a jwt token in the response
                 let user = response.json();
+                console.log(user);
                 if (user && user.token) {
 
+                    let token = 'Bearer ' + user.token;
+
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    localStorage.setItem('currentUser', token);
                 }
             });
 
-   	}
+     }
 
 
-   	logout(){
-   		//remove user form local storage
-   		localStorage.removeItem('currentUser');
-   	}
+    public isAuthenticated(): boolean {
+
+      if(localStorage.getItem('currentUser')=== null){
+        return false;
+      }else{
+
+        //const token = localStorage.getItem('currentUser');
+        
+        // Check whether the token is expired and return
+        // true or false
+        return !this.jwtHelper.isTokenExpired(localStorage.getItem('currentUser'));
+       }
+    }
+
+
+     logout(){
+       //remove user form local storage
+       localStorage.removeItem('currentUser');
+     }
 }

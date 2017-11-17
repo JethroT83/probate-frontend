@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Headers,Response } from '@angular/http';
 import { Ng4FilesModule,Ng4FilesStatus,Ng4FilesSelected } from 'angular4-files-upload';
 import * as Promise from 'bluebird';
-import {HomeComponent} from '../../home/home.component';
+import {HomeComponent} from '../../home.component';
 
 @Component({
   selector: 'app-upload',
@@ -38,18 +38,18 @@ export class UploadComponent extends HomeComponent implements OnInit {
 
 		// Execute Promise Array
 		Promise.resolve(p.map((body)=>{
-			this.http.post('http://localhost:8000/api/v1/upload',body, this.headers)
+			this.http.post('http://localhost:8000/api/v1/upload',body, {headers:this.headers})
 				.map((response:Response)=>{
 					console.log(response);
 				})
 				.subscribe((data) => this.message.push(data));
 		})).then(()=>{
-			//this.getFiles();
+			this.getFiles();
 		});
 	}
 
 
-	public fileSelect(selectedFiles: Ng4FilesSelected): void {
+	public filesButton(selectedFiles: Ng4FilesSelected): void {
 
 		if (selectedFiles.status !== Ng4FilesStatus.STATUS_SUCCESS) {
 			this.selectedFiles = selectedFiles.status;
@@ -72,13 +72,13 @@ export class UploadComponent extends HomeComponent implements OnInit {
 
 		// Execute Promise Array
 		Promise.resolve(p.map((body)=>{
-			this.http.post('http://localhost:8000/api/v1/upload',body, this.headers)
+			this.http.post('http://localhost:8000/api/v1/upload',body, {headers:this.headers})
 				.map((response:Response)=>{
 					console.log(response);
 				})
 				.subscribe((data) => this.message.push(data));
 		})).then(()=>{
-			//this.getFiles();
+			this.getFiles();
 		});
 	}
 

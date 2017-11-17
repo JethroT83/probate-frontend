@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "@auth0/angular-jwt": "^1.0.0-beta.9",
     "@types/bluebird": "^3.5.5",
     "@types/gsap": "^1.19.1",
     "angular4-files-upload": "^1.0.2",

@@ -1,9 +1,9 @@
 
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './_guards/index';
+import { AuthGuard } from './_services/index';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -14,3 +14,21 @@ const appRoutes: Routes = [
 ];
 
 export const Routing = RouterModule.forRoot(appRoutes);
+
+
+
+/*import { ProfileComponent } from './profile/profile.component';
+import { 
+  AuthGuardService as AuthGuard 
+} from './auth/auth-guard.service';
+
+
+export const ROUTES: Routes = [
+  { path: '', component: HomeComponent },
+  { 
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard] 
+  },
+  { path: '**', redirectTo: '' }
+];*/

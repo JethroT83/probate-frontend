@@ -4,8 +4,7 @@ import { Http, Headers,Response } from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 //Services
-import { AuthenticationService } from '../_services/index';
-//import { Template } from '../_models/index';
+import { AuthenticationService,GeneralService } from '../_services/index';
 
 //Libraries
 import { Ng4FilesModule,Ng4FilesStatus,Ng4FilesSelected } from 'angular4-files-upload';
@@ -27,8 +26,7 @@ export class HomeComponent implements OnInit {
 	protected selectedFiles;
 	protected files = [];
 	protected message = [];
-	protected headers  = new Headers({"Content-Type":"multipart/form-data",
-									"cache-control": "no-cache"});
+	protected headers  = new Headers({'Authorization':localStorage.getItem('currentUser')});
 	protected width;
 	protected pc;
 	protected largeBreak = 767;
@@ -41,7 +39,8 @@ export class HomeComponent implements OnInit {
 
 	constructor(protected http:Http,
 				private router: Router,
-				private authenticationService: AuthenticationService) {
+				private authenticationService: AuthenticationService,
+				protected generalService:GeneralService) {
 
 		// Set width
 		this.width = document.body.offsetWidth;
@@ -75,7 +74,7 @@ export class HomeComponent implements OnInit {
 		switch(this.uploadpos){
 
 			case false:
-				//console.log(this.tl2);
+
 				//Close the other view before opening the other one
 				if(	typeof this.tl2 != 'undefined'){
 					this.tl2.reverse();
@@ -122,14 +121,16 @@ export class HomeComponent implements OnInit {
 	}
 
 	public getFiles(){
-		this.http.get('http://localhost:8000/api/v1/files')
+
+
+		this.http.get('http://localhost:8000/api/v1/files', {headers: this.headers})
 			.subscribe(
 				data=>{
-					console.log(data.json());
 					this.files = data.json();
 				}, 
 				err => {
-			        console.log("Ummm yea... I am gonna have to go ahead and disagree with you there.")
+					console.log(err);
+			        //console.log("Ummm yea... I am gonna have to go ahead and disagree with you there.")
 			    }
 			);
 	}

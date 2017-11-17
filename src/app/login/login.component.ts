@@ -17,7 +17,6 @@ import { AuthenticationService } from '../_services/index';
 export class LoginComponent implements OnInit {
 
   private cred     = new Credentials(null,null);
-  private headers  = new Headers({"Content-Type":"application/json"});
   private data;
   private returnUrl;
   private loading;

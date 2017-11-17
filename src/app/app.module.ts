@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 //Imports
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule }    from '@angular/http';
+import { Http, HttpModule }    from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 import { Routing }        from './app.routing';
 import { Ng4FilesModule } from 'angular4-files-upload';
@@ -13,12 +13,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 //Providers
-import { AuthGuard } from './_guards/index';
-import { AuthenticationService, ToolBoxService} from './_services/index';
+import { AuthenticationService, AuthGuard, GeneralService} from './_services/index';
+import { JwtHelper } from 'angular2-jwt';
 
 //Directives
-import { UploadComponent } from './_directives/upload/upload.component';
-import { RunComponent } from './_directives/run/run.component';
+import { UploadComponent } from './home/submodules/upload/upload.component';
+import { RunComponent } from './home/submodules/run/run.component';
 
 
 @NgModule({
@@ -38,7 +38,8 @@ import { RunComponent } from './_directives/run/run.component';
   ],
   providers: [AuthGuard,
               AuthenticationService,
-              ToolBoxService],
+              JwtHelper,
+              GeneralService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

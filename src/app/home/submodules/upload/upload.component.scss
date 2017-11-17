@@ -9,7 +9,7 @@ $break-large:767px;
 	width:90vw;
 	height:20vh;
 
-	font-family: 'blackthrons_regular';
+	font-family: 'timeburnerbold';
 	font-size:3em;
 	color:white;
 	text-align:center;
@@ -41,13 +41,13 @@ $break-large:767px;
     height:80vh;
 
 
-	font-family: 'blackthrons_regular';
+	font-family: 'timeburnerbold';
 	font-size: 2em;
 	color: white;
 
 	&:before{
 		z-index:0;
-		background-image: url('../../../assets/home_background.png');
+		background-image: url('../../../../assets/home_background.png');
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 		background-size: cover;
@@ -74,12 +74,14 @@ $break-large:767px;
 
 
 .uploadBox {
+	position:relative;
+	z-index:1;
 	height: 65vh;
 	width:65vw;
 	outline: white dotted thick;
 	padding-top:28vh;
 	text-align: center;
-	font-family: 'blackthrons_regular';
+	font-family: 'timeburnerbold';
 	font-size: 2em;
 	color: white;
 	text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000
@@ -91,8 +93,10 @@ $break-large:767px;
 	position:relative;
 	z-index:1;
 	padding-top:1vh;
-	line-height:60vw;
+	line-height:50vw;
 	width:60vw;
-	font-size:10vw;
+	max-width:50vw;
+	max-height:50vw;
+	font-size:7vw;
 
 }

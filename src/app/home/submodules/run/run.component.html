@@ -10,19 +10,33 @@ Run Files
 		</thead>
 	  	<tbody>
 			<tr *ngFor="let file of files">
+			
+				<!--file Name-->
 				<td>{{file.frontend_name}}</td>
+
+				<!--Run-->
 				<td *ngIf="file.ran == 0">
-					<button (click)="runFile(file.local_name)">Run</button>
+					<button (click)="runFile(file.id)">Run</button>
 				</td>
 				<td *ngIf="file.ran == 1">
-					<button (click)="runFile(file.local_name)">Re-Run</button>
+					<button (click)="runFile(file.id)">Re-Run</button>
 				</td>
+				<td *ngIf="file.ran== 2">
+					PENDING
+				</td>
+
+				<!--Download-->
 				<td *ngIf="file.ran == 0">
 					<span>Must Run File</span>
 				</td>
 				<td *ngIf="file.ran == 1">
-					<button (click)="getCsv()">Get CSV</button>
+					<button (click)="getCSV(file.id)">Get CSV</button>
 				</td>
+
+				<td>
+					<button class="btn btn-danger" (click)="delete(file.id)">Delete</button>
+				</td>
+
 			</tr>
 	  	</tbody>
 	</table>
