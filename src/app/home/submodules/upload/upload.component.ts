@@ -24,6 +24,8 @@ export class UploadComponent extends HomeComponent implements OnInit {
 			return;
 		}
 
+		this.loading = true;
+
 		// Build Promise Array
 		let p = [];
 		this.selectedFiles = Array.from(selectedFiles.files).map((file) => {
@@ -38,13 +40,14 @@ export class UploadComponent extends HomeComponent implements OnInit {
 
 		// Execute Promise Array
 		Promise.resolve(p.map((body)=>{
-			this.http.post('http://localhost:8000/api/v1/upload',body, {headers:this.headers})
+			this.http.post('http://localhost:8000/api/v1/upload',body)
 				.map((response:Response)=>{
 					console.log(response);
 				})
 				.subscribe((data) => this.message.push(data));
 		})).then(()=>{
 			this.getFiles();
+			this.loading = false;
 		});
 	}
 
@@ -55,6 +58,8 @@ export class UploadComponent extends HomeComponent implements OnInit {
 			this.selectedFiles = selectedFiles.status;
 			return;
 		}
+
+		this.loading = true;
 
 		this.selectedFiles = Array.from(selectedFiles.files).map(file => file.name);
 
@@ -72,13 +77,14 @@ export class UploadComponent extends HomeComponent implements OnInit {
 
 		// Execute Promise Array
 		Promise.resolve(p.map((body)=>{
-			this.http.post('http://localhost:8000/api/v1/upload',body, {headers:this.headers})
+			this.http.post('http://localhost:8000/api/v1/upload',body)
 				.map((response:Response)=>{
 					console.log(response);
 				})
 				.subscribe((data) => this.message.push(data));
 		})).then(()=>{
 			this.getFiles();
+			this.loading = false;
 		});
 	}
 

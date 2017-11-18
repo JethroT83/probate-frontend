@@ -1,6 +1,7 @@
 //Angular
 import { Component,OnInit} from '@angular/core';
-import { Http, Headers,Response } from '@angular/http';
+//import { Headers,Response } from '@angular/http';
+import { HttpClient, HttpHeaders,HttpResponse} from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 //Services
@@ -26,18 +27,15 @@ export class HomeComponent implements OnInit {
 	protected selectedFiles;
 	protected files = [];
 	protected message = [];
-	protected headers  = new Headers({'Authorization':localStorage.getItem('currentUser')});
 	protected width;
 	protected pc;
 	protected largeBreak = 767;
-	private tl1;
-	private tl2;
-	private tm;
 	private uploadpos = false;
 	private myfilespos = false;
+	public loading;
 
 
-	constructor(protected http:Http,
+	constructor(public http:HttpClient,
 				private router: Router,
 				private authenticationService: AuthenticationService,
 				protected generalService:GeneralService) {
@@ -76,18 +74,15 @@ export class HomeComponent implements OnInit {
 			case false:
 
 				//Close the other view before opening the other one
-				if(	typeof this.tl2 != 'undefined'){
-					this.tl2.reverse();
+				if(	this.myfilespos === true){
 					this.myfilespos = false;
 				}
 
-				this.tl1 = new TimelineLite();
-				this.tl1.to('#appUpload', 1, {right:140});
 				this.uploadpos = true;
 				break;
 
 			default:
-				this.tl1.reverse();
+
 				this.uploadpos = false;
 				break;
 
@@ -102,18 +97,14 @@ export class HomeComponent implements OnInit {
 
 			case false:
 				//Close the other view before opening the other one
-				if(typeof this.tl1 != 'undefined'){
-					this.tl1.reverse();
+				if(this.uploadpos = true){
 					this.uploadpos = false;
 				}
 
-				this.tl2 = new TimelineLite();
-				this.tl2.to('#appMyFiles', 1, {right:140});
 				this.myfilespos = true;
 				break;
 
 			default:
-				this.tl2.reverse();
 				this.myfilespos = false;
 				break;
 
@@ -123,14 +114,13 @@ export class HomeComponent implements OnInit {
 	public getFiles(){
 
 
-		this.http.get('http://localhost:8000/api/v1/files', {headers: this.headers})
+		this.http.get('http://localhost:8000/api/v1/files')
 			.subscribe(
-				data=>{
-					this.files = data.json();
+				(data:any)=>{
+					this.files = data;
 				}, 
 				err => {
-					console.log(err);
-			        //console.log("Ummm yea... I am gonna have to go ahead and disagree with you there.")
+			        console.log("Ummm yea... I am gonna have to go ahead and disagree with you there.")
 			    }
 			);
 	}

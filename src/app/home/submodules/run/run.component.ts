@@ -1,6 +1,7 @@
 
 import { Component, OnInit, Input} from '@angular/core';
-import { Http, Headers,Response } from '@angular/http';
+//import { Http, Headers,Response } from '@angular/http';
+import { HttpClient, HttpHeaders,HttpResponse} from '@angular/common/http';
 import {HomeComponent} from '../../home.component';
 import {GeneralService} from '../../../_services/index';
 
@@ -21,49 +22,48 @@ export class RunComponent extends HomeComponent implements OnInit {
 
 
 	public runFile(fileID){
-		this.http.get('http://localhost:8000/api/v1/run/'+fileID, {headers:this.headers})
+		this.loading = true;
+		this.http.get('http://localhost:8000/api/v1/run/'+fileID)
 			.subscribe(
-				data=>{}, 
-				err => {
-			        console.log("Ummm yea... I am gonna have to go ahead and disagree with you there.")
-			    }
+				data=>{this.loading = false;}, 
+				err => {}
 			);
 	}
 
 
 	public getCSV(fileID){
-		this.http.get('http://localhost:8000/api/v1/download/'+fileID, {headers:this.headers})
+
+		this.http.get('http://localhost:8000/api/v1/download/'+fileID)
 			.subscribe(
 				result=>{
 
 					//Convert Data
-					let data = result.json();
+					let data = result;
 
 					//Convert to CSV
 					let csv  = this.generalService.convertToCSV(data);
 
 					//Download tab
 					this.generalService.downloadFile(csv);
+
 				}, 
-				err => {
-			        console.log("Ummm yea... I am gonna have to go ahead and disagree with you there.")
-			    }
+				err => {}
 			);
 	}
 
 	public delete(fileID){
 
+		this.loading = true;
+
 		let body = new FormData();
 
-		this.http.post('http://localhost:8000/api/v1/delete/'+fileID,body ,{headers:this.headers})
+		this.http.post('http://localhost:8000/api/v1/delete/'+fileID,body)
 			.subscribe(
 				result=>{
 					this.getFiles();
+					this.loading = false;
 				}, 
-				err => {
-					console.log(err);
-			        console.log("Ummm yea... I am gonna have to go ahead and disagree with you there.")
-			    }
+				err => {}
 			);
 	}
 }

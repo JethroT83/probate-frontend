@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Http, Headers } from '@angular/http';
+import { Headers } from '@angular/http';
+import { HttpClient} from '@angular/common/http';
 import { NgForm }   from '@angular/forms';
 import { Credentials }    from '../_models/index';
 import { AuthenticationService } from '../_services/index';
@@ -19,9 +20,9 @@ export class LoginComponent implements OnInit {
   private cred     = new Credentials(null,null);
   private data;
   private returnUrl;
-  private loading;
+  public loading;
 
-  constructor(private _http: Http,
+  constructor(private _http: HttpClient,
               private route: ActivatedRoute,
               private router: Router,
               private authenticationService: AuthenticationService
@@ -36,21 +37,20 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  onClick(){}
+  onClick(){
+  }
 
 
   onSubmit(form:NgForm){
-
     this.loading = true;
-
     this.authenticationService.login(this.cred.email, this.cred.password)
         .subscribe(
             data => {
                 this.router.navigate([this.returnUrl]);
+                this.loading = false;
             },
             error => {
-                //this.alertService.error(error);
-                this.loading = false;
+                
             });
   }
 

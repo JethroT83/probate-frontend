@@ -21,7 +21,7 @@ export class AuthenticationService {
 
                 // login successful if there's a jwt token in the response
                 let user = response.json();
-                console.log(user);
+
                 if (user && user.token) {
 
                     let token = 'Bearer ' + user.token;
@@ -39,10 +39,6 @@ export class AuthenticationService {
       if(localStorage.getItem('currentUser')=== null){
         return false;
       }else{
-
-        //const token = localStorage.getItem('currentUser');
-        
-        // Check whether the token is expired and return
         // true or false
         return !this.jwtHelper.isTokenExpired(localStorage.getItem('currentUser'));
        }
