@@ -40,7 +40,7 @@ export class UploadComponent extends HomeComponent implements OnInit {
 
 		// Execute Promise Array
 		Promise.resolve(p.map((body)=>{
-			this.http.post('http://localhost:8000/api/v1/upload',body)
+			this.http.post(this.config.host+'/api/v1/upload',body)
 				.map((response:Response)=>{
 					console.log(response);
 				})
@@ -77,7 +77,7 @@ export class UploadComponent extends HomeComponent implements OnInit {
 
 		// Execute Promise Array
 		Promise.resolve(p.map((body)=>{
-			this.http.post('http://localhost:8000/api/v1/upload',body)
+			this.http.post(this.config.host+'/api/v1/upload',body)
 				.map((response:Response)=>{
 					console.log(response);
 				})

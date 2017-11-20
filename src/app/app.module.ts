@@ -14,7 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 //Providers
-import { AuthenticationService,AuthGuard,GeneralService,Interceptor} from './_services/index';
+import { AuthenticationService,AuthGuard,GeneralService,Interceptor,Config} from './_services/index';
 import { JwtHelper } from 'angular2-jwt';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
@@ -47,7 +47,8 @@ import { RunComponent } from './home/submodules/run/run.component';
               AuthGuard,
               AuthenticationService,
               JwtHelper,
-              GeneralService],
+              GeneralService,
+              Config],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

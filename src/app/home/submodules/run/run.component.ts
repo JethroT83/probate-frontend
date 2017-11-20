@@ -23,7 +23,7 @@ export class RunComponent extends HomeComponent implements OnInit {
 
 	public runFile(fileID){
 		this.loading = true;
-		this.http.get('http://localhost:8000/api/v1/run/'+fileID)
+		this.http.get(this.config.host+'/api/v1/run/'+fileID)
 			.subscribe(
 				data=>{this.loading = false;}, 
 				err => {}
@@ -33,7 +33,7 @@ export class RunComponent extends HomeComponent implements OnInit {
 
 	public getCSV(fileID){
 
-		this.http.get('http://localhost:8000/api/v1/download/'+fileID)
+		this.http.get(this.config.host+'/api/v1/download/'+fileID)
 			.subscribe(
 				result=>{
 
@@ -57,7 +57,7 @@ export class RunComponent extends HomeComponent implements OnInit {
 
 		let body = new FormData();
 
-		this.http.post('http://localhost:8000/api/v1/delete/'+fileID,body)
+		this.http.post(this.config.host+'/api/v1/delete/'+fileID,body)
 			.subscribe(
 				result=>{
 					this.getFiles();

@@ -3,6 +3,7 @@ import { Http, Headers, Response } from '@angular/http';
 import { JwtHelper } from 'angular2-jwt';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {Config} from './config.service';
 
 @Injectable()
 export class AuthenticationService {
@@ -10,13 +11,14 @@ export class AuthenticationService {
   private headers  = new Headers({"Content-Type":"application/json"});
 
     constructor(private http: Http,
-                public jwtHelper: JwtHelper) { }
+                public jwtHelper: JwtHelper,
+                private config:Config) { }
 
     login(email:string, password:string) {
 
       let cred = JSON.stringify({email:email,password:password});
 
-        return this.http.post('http://localhost:8000/api/v1/auth/login', cred, {headers: this.headers})
+        return this.http.post(this.config.host + '/api/v1/auth/login', cred, {headers: this.headers})
             .map((response: Response) => {
 
                 // login successful if there's a jwt token in the response

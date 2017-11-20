@@ -1,11 +1,10 @@
 //Angular
 import { Component,OnInit} from '@angular/core';
-//import { Headers,Response } from '@angular/http';
 import { HttpClient, HttpHeaders,HttpResponse} from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 //Services
-import { AuthenticationService,GeneralService } from '../_services/index';
+import { AuthenticationService,GeneralService,Config } from '../_services/index';
 
 //Libraries
 import { Ng4FilesModule,Ng4FilesStatus,Ng4FilesSelected } from 'angular4-files-upload';
@@ -38,7 +37,8 @@ export class HomeComponent implements OnInit {
 	constructor(public http:HttpClient,
 				private router: Router,
 				private authenticationService: AuthenticationService,
-				protected generalService:GeneralService) {
+				protected generalService:GeneralService,
+				protected config:Config) {
 
 		// Set width
 		this.width = document.body.offsetWidth;
@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit {
 	public getFiles(){
 
 
-		this.http.get('http://localhost:8000/api/v1/files')
+		this.http.get(this.config.host+'/api/v1/files')
 			.subscribe(
 				(data:any)=>{
 					this.files = data;
